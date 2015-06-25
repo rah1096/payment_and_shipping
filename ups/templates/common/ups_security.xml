@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<AccessRequest>
+    <AccessLicenseNumber>
+        {{access_key}}
+    </AccessLicenseNumber>
+    <UserId>
+        {{user_id}}
+    </UserId>
+    <Password>
+        {{password}}
+    </Password>
+</AccessRequest>

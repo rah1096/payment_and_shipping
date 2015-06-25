@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="/charge_card/" method="post">
+    {%  csrf_token %}
+    <input type="text" name="amount" placeholder="amount to charge"/><br>
+    <input type="text" name="number" placeholder="card number"/><br>
+    <input type="text" name="month" placeholder="month"/><br>
+    <input type="text" name="year" placeholder="year"/><br>
+    <input type="text" name="cvc" placeholder="cvc"/><br><br><br>
+    <input type="submit" value="Submit"/><br>
+
+</form>
+    <h3>Order Status</h3>
+    {%  if request.POST %}
+        {%  if order_status == "Thank you!" %}
+            <h2 style="color:green;">Thank you for your order!</h2>
+        {%  else %}
+            <h2 style="color:red;">There was an error!</h2>
+        {% endif %}
+    {% else%}
+        <h2 style="color:green;"></h2>
+    {%  endif %}
+</body>
+</html>

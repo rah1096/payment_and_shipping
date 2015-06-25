@@ -1,0 +1,35 @@
+<Address>
+    {%- if address.address1 -%}
+    <AddressLine1>
+        {{address.address1}}
+    </AddressLine1>
+    {%- endif -%}
+    {%- if address.address2 -%}
+    <AddressLine2>
+        {{address.address2}}
+    </AddressLine2>
+    {%- endif -%}
+    {%- if address.address3 -%}
+    <AddressLine3>
+        {{address.address3}}
+    </AddressLine3>
+    {%- endif -%}
+    {%- if address.city -%}
+    <City>
+        {{address.city}}
+    </City>
+    {%- endif -%}
+    {%- if address.state -%}
+    <StateProvinceCode>
+        {{address.state}}
+    </StateProvinceCode>
+    {%- endif -%}
+    <PostalCode>
+        {{address.zip}}
+    </PostalCode>
+    {%- if address.country -%}
+    <CountryCode>
+        {{address.country}}
+    </CountryCode>
+    {%- endif -%}
+</Address>

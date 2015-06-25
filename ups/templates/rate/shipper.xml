@@ -1,0 +1,20 @@
+<Shipper>
+    {%- if shipper.name -%}
+    <Name>
+        {{shipper.name}}
+    </Name>
+    {% endif -%}
+    {%- if shipper.number -%}
+    <ShipperNumber>
+        {{shipper.number}}
+    </ShipperNumber>
+    {% endif -%}
+    {%- if shipper.phone_number -%}
+    <PhoneNumber>
+        {{shipper.phone_number}}
+    </PhoneNumber>
+    {% endif -%}
+    {%- with address = shipper.address -%}
+    {%- include 'common/address.xml' -%}
+    {%- endwith -%}
+</Shipper>

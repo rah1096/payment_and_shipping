@@ -1,0 +1,13 @@
+{%- if recipient.name -%}
+<CompanyName>
+    {{recipient.name}}
+</CompanyName>
+{% endif -%}
+{%- if recipient.phone_number -%}
+<PhoneNumber>
+    {{recipient.phone_number}}
+</PhoneNumber>
+{%- endif -%}
+{%- with address = recipient.address -%}
+{%- include 'common/address.xml' -%}
+{%- endwith -%}

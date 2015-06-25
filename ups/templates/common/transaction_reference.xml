@@ -1,0 +1,8 @@
+<TransactionReference>
+    <CustomerContext>
+        {{reference.customercontext}}
+    </CustomerContext>
+    <ToolVersion>
+        {{reference.toolversion}}
+    </ToolVersion>
+</TransactionReference>

@@ -1,0 +1,86 @@
+<Package>
+    {%- if package.packaging_type_code -%}
+    {%- with -%}
+    {%- set code = package.packaging_type_code -%}
+    <PackagingType>
+        {%- include 'common/code_description.xml' -%}
+    </PackagingType>
+    {%- endwith -%}
+    {%- endif -%}
+    {%- if package.dimensions -%}
+    <Dimensions>
+        <UnitOfMeasurement>
+            <Code>
+                IN
+            </Code>
+        </UnitOfMeasurement>
+        <Length>
+            {{package.dimensions.length}}
+        </Length>
+        <Width>
+            {{package.dimensions.width}}
+        </Width>
+        <Height>
+            {{package.dimensions.height}}
+        </Height>
+    </Dimensions>
+    {%- endif -%}
+    {%- if package.weight -%}
+    <PackageWeight>
+        <UnitOfMeasurement>
+            <Code>
+                LBS
+            </Code>
+        </UnitOfMeasurement>
+        <Weight>
+            {{package.weight}}
+        </Weight>
+    </PackageWeight>
+    {%- endif -%}
+    {%- if package.large -%}
+    <LargePackageIndicator/>
+    {%- endif -%}
+    {%- if package.options -%}
+    {%- with options = package.options -%}
+    <PackageServiceOptions>
+        {%- if options.insured_value -%}
+        <InsuredValue>
+            <CurrencyCode>
+                USD
+            </CurrencyCode>
+            <MonetaryValue>
+                {{options.insured_value}}
+            </MonetaryValue>
+        </InsuredValue>
+        {%- endif -%}
+        {%- if options.cod and not options.delivery_confirmation -%}
+        <COD>
+            <CODFundsCode>
+                {{options.cod.funds_code}}
+            </CODFundsCode>
+            <CODAmount>
+                {{options.code.amount}}
+            </CODAmount>
+        </COD>
+        {%- endif -%}
+        {%- if options.delivery_confirmation and not options.code -%}
+        <DeliveryConfirmation>
+            <DCISType>
+                {{options.delivery_confirmation.type}}
+            </DCISType>
+        </DeliveryConfirmation>
+        {%- endif -%}
+        {%- if options.verbal_confirmation -%}
+        <VerbalConfirmation>
+            <Name>
+                {{options.verbal_confirmation.name}}
+            </Name>
+            <PhoneNumber>
+                {{options.verbal_confirmation.phone}}
+            </PhoneNumber>
+        </VerbalConfirmation>
+        {%- endif -%}
+    </PackageServiceOptions>
+    {%- endwith -%}
+    {%- endif -%}
+</Package>

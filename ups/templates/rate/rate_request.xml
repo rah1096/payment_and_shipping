@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<RatingServiceSelectionRequest>
+    {%- with -%}
+    {%- set action = 'Rate' -%}
+    {%- set option = request.OPTION -%}
+    {%- include 'common/request.xml' -%}
+    {%- endwith -%}
+    {%-if request.pickup_type_code -%}
+    <PickupType>
+        {%- with code = request.pickup_type_code -%}
+        {%- include 'common/code_description.xml'-%}
+        {%- endwith -%}
+    </PickupType>
+    {%- endif -%}
+    {%- if request.customer_type_code -%}
+    <CustomerClassification>
+        {%- with code = request.customer_type_code -%}
+        {%- include 'common/code_description.xml'-%}
+        {%- endwith -%}
+    </CustomerClassification>
+    {%- endif -%}
+    {{ request.shipment.render()}}
+</RatingServiceSelectionRequest>

@@ -1,0 +1,53 @@
+<Shipment>
+    {%- with shipper = shipment.shipper -%}{%- include 'rate/shipper.xml' -%}{%- endwith -%}
+    {%- with recipient = shipment.ship_to -%}
+    <ShipTo>
+        {%- include 'rate/shipping_endpoint.xml' -%}
+    </ShipTo>
+    {%- endwith -%}
+    {%- if shipment.ship_from -%}
+    {%- with endpoint = shipment.ship_from -%}
+    <ShipFrom>
+        {%- include 'rate/shipping_endpoint.xml' -%}
+    </ShipFrom>
+    {%- endwith -%}
+    {%- endif -%}
+    {%- if shipment.service -%}
+    {%- with service = shipment.service -%}
+    {%- set code = service.code -%}
+    {%- include 'common/code_description.xml' -%}
+    {%- endwith -%}
+    {%- endif -%}
+    {%- if shipment.documents_only -%}
+    <DocumentsOnly/>
+    {%- endif -%}
+	{%- if shipment.service_code -%}
+		<Service>
+		{%- with code = shipment.service_code -%}
+		{%- include 'common/code_description.xml' -%}
+		{%- endwith -%}
+		</Service>
+	{%- endif -%}
+    {%- for package in shipment.packages -%}
+    {%- include 'rate/package.xml' -%}
+    {%- endfor -%}
+    {%- if shipment.options -%}
+    {%- with options = shipment.options -%}
+    {%- endwith -%}
+    {%- endif -%}
+    {%- if shipment.negotiated_rates -%}
+    <RateInformation>
+        <NegotiatedRatesIndicator/>
+    </RateInformation>
+    {%- endif -%}
+    {%- if shipment.invoice_line_total -%}
+    <InvoiceLineTotal>
+        <CurrencyCode>
+            {{shipment.invoice_line_total.currency_code}}
+        </CurrencyCode>
+        <MonetaryValue>
+            {{shipment.invoice_line_total.value}}
+        </MonetaryValue>
+    </InvoiceLineTotal>
+    {%- endif -%}
+</Shipment>

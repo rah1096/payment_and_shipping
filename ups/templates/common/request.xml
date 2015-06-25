@@ -1,0 +1,15 @@
+<Request>
+    <RequestAction>
+        {{action}}
+    </RequestAction>
+    {%- if option -%}
+    <RequestOption>
+        {{option}}
+    </RequestOption>
+    {%- endif -%}
+    {%- if request.transactionreference -%}
+    <TransactionReference>
+        {{option}}
+    </TransactionReference>
+    {%- endif -%}
+</Request>
